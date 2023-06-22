@@ -1,0 +1,410 @@
+// /* Google Font Link */
+// // @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+  
+  
+.home-section{
+  position: relative;
+  background: #E4E9F7;
+  min-height: 100vh;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.sidebar-manage-general-admin.open ~ .home-section{
+  left: 250px;
+  width: calc(100% - 250px);
+}
+.home-section .text{
+  display: inline-block;
+  color: #11101d;
+  font-size: 50px;
+  font-weight: 500;
+  margin: 18px;
+  text-align: center;
+}
+@media (max-width: 420px) {
+  .sidebar-manage-general-admin li .tooltip{
+    display: none;
+  }
+}
+
+// .button-container {
+//   text-align: right;
+//   margin-top: 1rem;
+// }
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px; /* Butonlar ile yazı arasındaki boşluğu ayarlayın */
+  
+}
+.horizontal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; /* Butonlar arasındaki dikey boşluğu ayarlayın */
+  width: 100%;
+}
+
+
+.horizontal-buttons .custom-button {
+  margin-right: 10px; /* Butonlar arasındaki yatay boşluğu ayarlayın */
+}
+
+.vertical-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// .button-container > .vertical-buttons {
+//   margin-right: 10px; /* Buton grupları arasındaki yatay boşluğu ayarlayın */
+// }
+
+.custom-button {
+  background-color: #433f74; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+  cursor: pointer; 
+}
+
+.custom-button span {
+  margin-right: 5px;
+}
+
+.custom-button:hover {
+  background-color: #564fad;
+}
+
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+// @import '~bootstrap/scss/variables';
+// @import '~bootstrap/scss/mixins';
+
+
+
+$font-primary: 'Poppins',Arial, sans-serif;
+$primary: #3b375d;
+$black: #000000;
+$white: #ffffff;
+$borderColor: #11101d;
+
+.main-heading {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 1em;
+}
+
+// .container{
+// font-family: $font-primary;
+// font-size: 16px;
+// line-height: 1.8;
+// font-weight: normal;
+// background: #f8f9fd;
+// color: lighten($black,50%);
+//   margin: 0 30px 0px 70px;
+ 
+//   padding: 2.6em 0;
+// }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.content-heading-sec1{
+justify-content: left;
+
+}
+.content-heading-sec2{
+text-align: left;
+margin-bottom: 5px;
+padding-left: 1em;
+}
+// body{
+// 	font-family: $font-primary;
+// 	font-size: 16px;
+// 	line-height: 1.8;
+// 	font-weight: normal;
+// 	background: #f8f9fd;
+// 	color: lighten($black,50%);
+// }
+// a {
+// 	transition: .3s all ease;
+// 	color: $primary;
+// 	&:hover, &:focus {
+// 		text-decoration: none !important;
+// 		outline: none !important;
+// 		box-shadow: none;
+// 	}
+// }
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5 {
+line-height: 1.5;
+font-weight: 400;
+font-family: $font-primary;
+color: $black;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 0 15px;
+  }
+}
+
+.bg-primary{
+background: $primary !important;
+}
+
+.ftco-section{
+padding: 2em 0;
+  margin-left: 1em;
+}
+
+.ftco-no-pt{
+padding-top: 0;
+}
+.ftco-no-pb{
+padding-bottom: 0;
+}
+.heading-section{
+font-size: 28px;
+color: $black;
+}
+
+
+.table-wrap {
+@media (max-width: 1200px) {
+  overflow-x: scroll;
+}
+}
+.table{
+min-width: 700px !important;
+width: 100%;
+background: $white;
+-webkit-box-shadow: 0px 5px 12px -12px rgba(0,0,0,0.29);
+-moz-box-shadow: 0px 5px 12px -12px rgba(0,0,0,0.29);
+box-shadow: 0px 5px 12px -12px rgba(0,0,0,0.29);
+text-align: center;
+thead{
+  &.thead-primary{
+    background: $primary;
+  }
+  th{
+    border: none;
+    padding: 30px;
+    font-size: 14px;
+    color: $white;
+  }
+}
+tbody{
+  tr{
+    margin-bottom: 10px;
+  }
+  th,td{
+    border: none;
+    padding:30px;
+    font-size: 14px;
+    background: $white;
+    vertical-align: middle;
+    border-bottom: 2px solid #f8f9fd;
+  }
+  th.scope{
+    background: darken(#f8f9fd,4%);
+    border-bottom: 2px solid darken(#f8f9fd,6%);
+  }
+  td {
+@media (min-width: 500px) {
+  &:nth-child(odd) {
+    background: darken(#f8f9fd, 1%);
+    border-bottom: 2px solid darken(#f8f9fd, 3%);
+  }
+}
+}
+}
+}
+
+
+
+
+.form-area{
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  justify-content: center;
+  width: 60%;
+  margin: 0 20% 0 19%;
+  border: 2px solid $borderColor;
+  border-radius: .5rem;
+
+}
+.form-area .custom-button {
+  width: 95%;
+  margin-right: 2.5%;
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  .form-area {
+    max-width: 90%;
+  }
+}
+
+
+
+
+.titles {
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
+
+  >label{
+      display: block; 
+      text-align: left; 
+  }
+}
+
+
+.form-area input[type="text"],
+.form-area input[type="password"],
+.form-area input[type="email"],
+.form-area input[type="file"]{
+  width: 90%; 
+  padding: 10px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-left: 5%;
+}
+
+.form-area input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+
+.form-area .titles {
+  margin-left: 2rem;
+  margin-right: 5rem;
+}
+
+
+
+.alert-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+
+
+
+.form-area .file-input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-left: 2.3rem;
+}
+
+.form-area  .file-input-label {
+  cursor: pointer;
+  display: inline-block;
+  background-color: #e9e9e9;
+  padding: 20px;
+  border: 2px dashed #999;
+  border-radius: 10px;
+  width: 90%;
+}
+
+.form-area .file-input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-area .file-input-box i {
+  margin-bottom: 10px;
+  font-size: 36px;
+  color: #999;
+}
+
+.form-area .file-input-label span {
+  font-size: 18px;
+  color: #999;
+}
+
+
+.form-area .file-input-name {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 90%;
+  //width: 500px;
+  margin-bottom: 30px;
+  margin-left: 5%;
+}
+
+.select-wrapper select {
+  // overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  //width: 500px;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 16px;
+  padding-right: 24px;
+}
+
+.select-wrapper select::-ms-expand {
+  display: none;
+}
+
+
+
+.select-wrapper .titles {
+  margin-left: -0.4rem;
+
+}

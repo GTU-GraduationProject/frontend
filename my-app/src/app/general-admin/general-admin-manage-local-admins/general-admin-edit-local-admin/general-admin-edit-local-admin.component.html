@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="general-admin-edit-local-admin.component.scss">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+
+  <section class="home-section">
+
+
+    <div class="container">
+      <section class="ftco-section">
+
+        <div class="content-heading-sec1">
+          <div class="content-heading-sec2">
+            <div class="text">Edit Local Admin</div>
+          </div>
+        </div>
+
+        <div class="form-area">
+          <form (ngSubmit)="saveLocalAdmin()">
+            <div>
+              <div class="titles">
+                <label for="name">Change Local Admin Name:</label>
+              </div>
+              <input type="text" id="name" [(ngModel)]="localAdmin.name" name="name">
+            </div>
+
+            <div>
+              <div class="titles">
+
+                <label for="surname">Change Local Admin Surname:</label>
+              </div>
+              <input type="text" id="surname" [(ngModel)]="localAdmin.surname" name="surname">
+            </div>
+
+            <div>
+              <div class="titles">
+                <label for="email">Change Local Admin's Email:</label>
+              </div>
+              <input type="email" id="email" [(ngModel)]="localAdmin.email" name="email">
+            </div>
+
+            <div class="button-container">
+              <button class="custom-button" type="submit">Save</button>
+            </div>
+          </form>
+
+
+        </div>
+
+        <div class="alert-container">
+          <div *ngFor="let errorMessage of errorMessages" class="alert alert-danger alert-dismissible fade show"
+            role="alert">
+            {{ errorMessage }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+              (click)="removeErrorMessage(errorMessage)"></button>
+          </div>
+
+          <div *ngFor="let message of messages" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+              (click)="removeMessage(message)"></button>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <app-sidebar-general-admin></app-sidebar-general-admin>
+  </section>
+
+
+
+</body>
+
+</html>

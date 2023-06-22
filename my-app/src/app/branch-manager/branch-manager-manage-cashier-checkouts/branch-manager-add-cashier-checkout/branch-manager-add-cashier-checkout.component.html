@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="branch-manager-add-cashier-checkout.component.scss">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+
+  <section class="home-section">
+
+
+    <div class="container">
+      <section class="ftco-section">
+
+        <div class="content-heading-sec1">
+          <div class="content-heading-sec2">
+            <div class="text">Add Cashier Checkout</div>
+          </div>
+        </div>
+
+        <div class="form-area">
+          <form (ngSubmit)="addCashierCheckout()">
+            <div>
+              <div class="titles">
+                <label for="name">Enter Camera Id:</label>
+              </div>
+              <input type="text" id="name" [(ngModel)]="cashierCheckout.cameraId" name="name">
+            </div>
+
+
+            <div class="select-wrapper">
+                <div class="titles">
+                  <label for="cashier">Select Cashier:</label>
+                </div>
+                <select id="cashier" [(ngModel)]="selectedCashierId" name="cashier">
+                  <option value="" disabled selected>Select Cashier</option>
+  
+                  <option *ngFor="let cashier of cashiers | async" [value]="cashier.id">{{ cashier.name + " "
+                    + cashier.surname}}</option>
+  
+                </select>
+                <span class="dropdown-arrow"></span>
+              </div>
+
+
+            <button class="custom-button" type="submit">Save</button>
+          </form>
+
+
+        </div>
+        <div class="alert-container">
+          <div *ngFor="let errorMessage of errorMessages" class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ errorMessage }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="removeErrorMessage(errorMessage)"></button>
+          </div>
+          
+          <div *ngFor="let message of messages" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="removeMessage(message)"></button>
+          </div>
+        </div> 
+
+      </section>
+    </div>
+
+    <app-sidebar-branch-manager></app-sidebar-branch-manager>
+  </section>
+
+
+
+</body>
+
+</html>

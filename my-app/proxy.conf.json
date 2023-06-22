@@ -1,0 +1,10 @@
+{
+    "/api/*": {
+      "target": "https://recognition-items-backend.up.railway.app/",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite":{
+        "^/api":""
+      }
+    }
+  }

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="general-admin-manage-local-admins.component.scss">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+
+  <section class="home-section">
+
+
+    <div class="container">
+      <section class="ftco-section">
+
+        <div class="content-heading-sec1">
+          <div class="content-heading-sec2">
+            <div class="text">Local Admins</div>
+            <button class="custom-button" (click)="addLocalAdmin()">
+              <span>+</span> Add Local Admin
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-wrap">
+              <table class="table">
+                <thead class="thead-primary">
+                  <tr>
+                    <th>Local Admin ID</th>
+                    <th>Local Admin Name</th>
+                    <th>Brand Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let localAdmin of getPage(currentPage, pageSize) ">
+
+                    <th scope="row" class="scope">{{ localAdmin?.id }}</th>
+                    <td>{{ localAdmin?.name + " " + localAdmin?.surname }}</td>
+                    <td>
+                      {{ localAdmin?.brandName }} <br>
+                      <ng-container *ngIf="localAdmin?.brandId">{{ '#' + localAdmin?.brandId }}</ng-container>
+
+                    </td>
+                    <td>
+                      <button class="custom-button" (click)="editLocalAdmin(localAdmin)">
+                        <span><i class='bx bx-edit'></i></span> Edit
+                      </button>
+                    </td>
+
+                    <td>
+                      <button class="custom-button" (click)="deleteLocalAdmin(localAdmin)">
+                        <span><i class='bx bx-trash'></i></span> Delete
+                      </button>
+                    </td>
+
+                  </tr>
+
+
+                </tbody>
+              </table>
+
+
+              <div class="page-arrows">
+
+                <button class="custom-button" (click)="goPreviousPage()">
+                  <i class='bx bx-left-arrow-circle'></i>
+                </button>
+
+                <button class="custom-button" style="margin-left: 1rem;" (click)="goNextPage()">
+                  <i class='bx bx-right-arrow-circle'></i>
+                </button>
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-container">
+          <div *ngFor="let errorMessage of errorMessages" class="alert alert-danger alert-dismissible fade show"
+            role="alert">
+            {{ errorMessage }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+              (click)="removeErrorMessage(errorMessage)"></button>
+          </div>
+
+          <div *ngFor="let message of messages" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+              (click)="removeMessage(message)"></button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <app-sidebar-general-admin></app-sidebar-general-admin>
+  </section>
+
+
+
+</body>
+
+</html>

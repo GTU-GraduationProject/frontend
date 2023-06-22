@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="sidebar-general-admin.component.scss">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <div class="sidebar-manage-general-admin">
+    <div class="logo-details">
+      <i class='bx bx-menu' id="btn-manage-general-admin" (click)="toggleSidebar()"></i>
+    </div>
+    <ul class="nav-list">
+
+      <li>
+        <a routerLink="/general-admin">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+
+      <li>
+        <a routerLink="/general-admin/manage-brands">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Manage Brands</span>
+        </a>
+        <span class="tooltip">Manage Brands</span>
+      </li>
+      <li>
+        <a routerLink="/general-admin/manage-products">
+          <i class='bx bx-basket'></i>
+          <span class="links_name">Manage Products</span>
+        </a>
+        <span class="tooltip">Manage Products</span>
+      </li>
+      <li>
+        <a routerLink="/general-admin/manage-local-admins">
+          <i class='bx bx-user'></i>
+          <span class="links_name">Manage Local Admins</span>
+        </a>
+        <span class="tooltip">Manage Local Admins</span>
+      </li>
+      <li>
+        <a routerLink="/general-admin/manage-product-owners">
+          <i class='bx bx-user'></i>
+          <span class="links_name">Manage Product Owners</span>
+        </a>
+        <span class="tooltip">Manage Product Owners</span>
+      </li>
+
+      <li class="profile">
+        <div class="profile-details">
+          <div class="name_job">
+            <div class="name">{{name}} {{surname}}</div>
+            <div class="role">General Admin</div>
+          </div>
+        </div>
+        <i class='bx bx-log-out' id="log_out_ga" (click)="logout()"></i>
+      </li>
+    </ul>
+  </div>
+
+</body>
+
+</html>

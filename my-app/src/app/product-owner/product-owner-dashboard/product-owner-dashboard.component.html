@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="product-owner-dashboard.component.scss">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+
+  <section class="home-section">
+
+
+    <div class="container">
+      <section class="ftco-section">
+
+        <div class="content-heading-sec1">
+          <div class="content-heading-sec2">
+            <div class="text">Dashboard</div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card bg-secondary-dark dashnum-card text-white overflow-hidden">
+              <span class="round small"></span>
+              <span class="round big"></span>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <div class="avtar avtar-lg">
+                      <i class="text-white ti ti-credit-card"></i>
+                    </div>
+                  </div>
+
+                </div>
+                <span class="text-white d-block f-34 f-w-500 my-2">{{totalItems}} <i
+                    class="ti ti-arrow-up-right-circle opacity-50"></i></span>
+                <p class="mb-0 opacity-50">Total Product</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card bg-secondary-dark dashnum-card text-white overflow-hidden">
+              <span class="round small"></span>
+              <span class="round big"></span>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <div class="avtar avtar-lg">
+                      <i class="text-white ti ti-credit-card"></i>
+                    </div>
+                  </div>
+
+                </div>
+                <span class="text-white d-block f-34 f-w-500 my-2"> {{totalSoldItems}} <i
+                    class="ti ti-arrow-up-right-circle opacity-50"></i></span>
+                <p class="mb-0 opacity-50">Total Sold Product</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card bg-secondary-dark dashnum-card text-white overflow-hidden">
+              <span class="round small"></span>
+              <span class="round big"></span>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <div class="avtar avtar-lg">
+                      <i class="text-white ti ti-credit-card"></i>
+                    </div>
+                  </div>
+
+                </div>
+                <span class="text-white d-block f-34 f-w-500 my-2">{{totalRemainingItems}} <i
+                    class="ti ti-arrow-up-right-circle opacity-50"></i></span>
+                <p class="mb-0 opacity-50">Total Remaining Product</p>
+              </div>
+            </div>
+          </div>
+
+
+          <div *ngIf="productLogo != ''" class="col-md-3">
+
+            <img class="product-logo" src="{{ productLogo }}" alt="Product Logo">
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <div class="row mb-3 align-items-center">
+                  <div class="col">
+                    <small>Top 10 Branches Sell The Most</small>
+                  </div>
+                </div>
+                <div id="branchChart">
+                  <apx-chart [series]="chartOptions?.series!" [chart]="chartOptions?.chart!"
+                    [dataLabels]="chartOptions?.dataLabels!" [plotOptions]="chartOptions?.plotOptions!"
+                    [responsive]="chartOptions?.responsive!" [xaxis]="chartOptions?.xaxis!"
+                    [colors]="chartOptions?.colors!" [grid]="chartOptions?.grid!"
+                    [tooltip]="chartOptions?.tooltip!"></apx-chart>
+
+                  <div class="text-center">
+                    <a href="/product-owner/branch-statistics" class="b-b-primary text-primary"
+                      (click)="viewAllBranches()">View All Branches <i class='bx bx-chevron-right'></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" id="itemChart">
+            <div class="card">
+              <div class="card-body">
+                <div class="row mb-3 align-items-center">
+                  <div class="col">
+                    <small>Top 5 Items Sold The Most</small>
+                  </div>
+                </div>
+                <apx-chart [series]="chartOption2?.series!" [chart]="chartOption2?.chart!"
+                  [labels]="chartOption2?.labels!" [responsive]="chartOption2?.responsive!"></apx-chart>
+
+                <div class="text-center">
+                  <a href="/product-owner/item-statistics" class="b-b-primary text-primary"
+                    (click)="viewAllItems()">View All Items <i class='bx bx-chevron-right'></i></a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="alert-container">
+          <div *ngFor="let errorMessage of errorMessages" class="alert alert-danger alert-dismissible fade show"
+            role="alert">
+            {{ errorMessage }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+              (click)="removeErrorMessage(errorMessage)"></button>
+          </div>
+
+          <div *ngFor="let message of messages" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+              (click)="removeMessage(message)"></button>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <app-sidebar-product-owner></app-sidebar-product-owner>
+  </section>
+
+
+
+</body>
+
+</html>

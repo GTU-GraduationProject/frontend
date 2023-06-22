@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="general-admin-manage-product-owners.component.scss">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+
+  <section class="home-section">
+
+
+    <div class="container">
+      <section class="ftco-section">
+
+        <div class="content-heading-sec1">
+          <div class="content-heading-sec2">
+            <div class="text">Product Owners</div>
+            <button class="custom-button" (click)="addProductOwner()">
+              <span>+</span> Add Product Owner
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-wrap">
+              <table class="table">
+                <thead class="thead-primary">
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Product Owner</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let productOwner of getPage(currentPage, pageSize) ">
+
+                    <th scope="row" class="scope">
+                      <div class="product-owner-photo">
+                        <img src="{{ productOwner?.productLogo }}" alt="Product Logo" width="100" height="100">
+                        <ng-container *ngIf="productOwner?.productName">
+
+                          <span class="owner-name">{{ productOwner?.productName }} <br>
+                            {{ '#' + productOwner?.productId }}
+                          </span>
+                        </ng-container>
+
+                      </div>
+                    </th>
+                    <td>
+                      {{ productOwner?.name + " " + productOwner?.surname }} <br>
+                      {{ '#' + productOwner?.id }}
+
+                    </td>
+                    <td>
+                      <button class="custom-button" (click)="editProductOwner(productOwner)">
+                        <span><i class='bx bx-edit'></i></span> Edit
+                      </button>
+                    </td>
+
+                    <td>
+                      <button class="custom-button" (click)="deleteProductOwner(productOwner)">
+                        <span><i class='bx bx-trash'></i></span> Delete
+                      </button>
+                    </td>
+
+                  </tr>
+
+
+                </tbody>
+              </table>
+
+
+              <div class="page-arrows">
+
+                <button class="custom-button" (click)="goPreviousPage()">
+                  <i class='bx bx-left-arrow-circle'></i>
+                </button>
+
+                <button class="custom-button" style="margin-left: 1rem;" (click)="goNextPage()">
+                  <i class='bx bx-right-arrow-circle'></i>
+                </button>
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-container">
+          <div *ngFor="let errorMessage of errorMessages" class="alert alert-danger alert-dismissible fade show"
+            role="alert">
+            {{ errorMessage }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+              (click)="removeErrorMessage(errorMessage)"></button>
+          </div>
+
+          <div *ngFor="let message of messages" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+              (click)="removeMessage(message)"></button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <app-sidebar-general-admin></app-sidebar-general-admin>
+  </section>
+
+
+
+</body>
+
+</html>
