@@ -58,7 +58,7 @@ export class BranchManagerManageCashierCheckoutsComponent implements OnInit{
 
   getCashierCheckouts(){
     this.cashierCheckouts.next([]);
-    this.requestService.listCashierCheckouts().subscribe((response: ListCashierCheckout[]) => {
+    this.requestService.listCashierCheckouts(this.userId).subscribe((response: ListCashierCheckout[]) => {
       console.log(response);
       if (response) {
         response.forEach((item: ListCashierCheckout) => {

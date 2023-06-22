@@ -27,6 +27,15 @@ export class GeneralAdminEditLocalAdminComponent implements OnInit {
     email: ""
   };
 
+  localAdmin_copy : LocalAdmins = {
+    id : 0,
+    name : "",
+    surname : "",
+    brandName: "",
+    brandId : 0,
+    email: ""
+  };
+
 
   localAdminName: string = "";
   localAdminSurname: string = "";
@@ -52,14 +61,25 @@ export class GeneralAdminEditLocalAdminComponent implements OnInit {
     this.surname = this.authService.getUserSurname();
 
     this.localAdmin = this.dataSharingService.getLocalAdmin();
-
+    this.localAdmin_copy = this.localAdmin;
   }
 
 
 
+  checkInputValue(){
+    if (!this.localAdmin.name || this.localAdmin.name.trim() === '') {
+      this.localAdmin.name = this.localAdmin_copy.name;
+    }
+    if (!this.localAdmin.surname || this.localAdmin.surname.trim() === '') {
+      this.localAdmin.surname = this.localAdmin_copy.surname;
+    }
+    if (!this.localAdmin.email || this.localAdmin.email.trim() === '') {
+      this.localAdmin.email = this.localAdmin_copy.email;
+    }
+  }
 
   saveLocalAdmin() {
-    
+    this.checkInputValue();
     //console.log('Clicked Save:');
     const editedLocalAdmin = {
       name : this.localAdmin.name,

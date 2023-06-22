@@ -237,6 +237,7 @@ export class ProductOwnerDashboardComponent implements OnInit{
 
 
   getTopTenBranches(){
+    this.branches.next([]);
     this.requestService.getTopTenBranches(this.productID).subscribe((response: { topTenBranches: TopTenBranches[] }) => {
       console.log(response);
       if (response) {
@@ -273,6 +274,7 @@ export class ProductOwnerDashboardComponent implements OnInit{
   }
 
   getTopFiveItems(){
+    this.items.next([]);
     this.requestService.getTopFiveItems(this.productID).subscribe((response: { topFiveItems: TopFiveItems[]}) => {
       console.log(response);
       if (response) {

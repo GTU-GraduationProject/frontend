@@ -57,7 +57,7 @@ export class LocalAdminManageTechnicalStaffsComponent implements OnInit{
   
    getTechnicalStaffs(){
     this.technicalStaffs.next([]);
-    this.requestService.listTechnicalStaffs().subscribe((response: ListTechnicalStaffs[]) => {
+    this.requestService.listTechnicalStaffs(this.userId).subscribe((response: ListTechnicalStaffs[]) => {
       console.log(response);
       if (response) {
         response.forEach((item: ListTechnicalStaffs) => {

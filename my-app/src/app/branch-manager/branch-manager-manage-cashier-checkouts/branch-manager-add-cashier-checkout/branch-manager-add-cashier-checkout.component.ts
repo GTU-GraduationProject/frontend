@@ -32,14 +32,21 @@ export class BranchManagerAddCashierCheckoutComponent implements OnInit {
   errorMessages: string[] = [];
   messages: string[] = [];
 
-  
+  userId : number = 0;
+
+  branchId : number = 0;
+
   cashiers: BehaviorSubject<Cashiers[]> = new BehaviorSubject<Cashiers[]>([]); 
 
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private requestService: RequestService) {}
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private requestService: RequestService) {
+    this.userId = parseInt(localStorage.getItem('userId')!, 10);
+  }
 
 
   ngOnInit(): void {
+    this.userId = parseInt(localStorage.getItem('userId')!, 10);
+    this.getBranchId();
     this.getCashiers();
   }
 
@@ -70,7 +77,23 @@ export class BranchManagerAddCashierCheckoutComponent implements OnInit {
    // console.log(this.cashiers); 
   }
 
+  getBranchId(){
+    this.requestService.getBrancIdOfCashierCheckout(this.userId).subscribe((response: {branchId: number }) => {
+      
+      console.log(response);
+      if (response) {
+        this.cashierCheckout.branchId  = response.branchId;
+      
+      }
+    
+    });
+
+ 
+  }
+
   addCashierCheckout(){
+    this.cashierCheckout.cashierId = this.selectedCashierId;
+
     this.requestService.addCashierCheckout(this.cashierCheckout).subscribe(
       (response: HttpResponse<any>) => {
         console.log('Response status:', response.status);

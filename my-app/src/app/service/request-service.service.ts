@@ -28,6 +28,7 @@ import { NewItem } from '../model/new-item';
 import { TechnicalStaffs } from '../local-admin/local-admin-manage-technical-staffs/local-admin-manage-technical-staffs.component';
 import { BranchManagers } from '../local-admin/local-admin-manage-branch-managers/local-admin-manage-branch-managers.component';
 import { EditCashierCheckout } from '../model/edit-cashier-checkout';
+import { TechnicalStaffInfo } from '../model/technical-staff-info';
 
 @Injectable({
   providedIn: 'root'
@@ -254,14 +255,15 @@ export class RequestService {
 
   }
 
-  listBranchManagers() : Observable<ListBranchManagers[]>{
+  listBranchManagers(localAdminId : number) : Observable<ListBranchManagers[]>{
     const token = this.authService.getToken();
     console.warn(token);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<ListBranchManagers[]>("/api/user/branch-manager",{ headers })
+    const url = "/api/user/branch-manager/list/" + localAdminId;
+    return this.http.get<ListBranchManagers[]>(url,{ headers })
     .pipe(
 
     );
@@ -307,14 +309,14 @@ export class RequestService {
 
   }
 
-  listTechnicalStaffs() : Observable<ListTechnicalStaffs[]>{
+  listTechnicalStaffs(localAdminId : number) : Observable<ListTechnicalStaffs[]>{
     const token = this.authService.getToken();
     console.warn(token);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-    return this.http.get<ListTechnicalStaffs[]>("/api/user/technical-staff",{ headers })
+    const url = "/api/user/technical-staff/list/" + localAdminId;
+    return this.http.get<ListTechnicalStaffs[]>(url,{ headers })
     .pipe(
 
     );
@@ -360,14 +362,15 @@ export class RequestService {
 
   }
 
-  listBranches() : Observable<ListBranch[]>{
+  listBranches(localAdminId: number) : Observable<ListBranch[]>{
     const token = this.authService.getToken();
     console.warn(token);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<ListBranch[]>("/api/branch/branches",{ headers })
+    const url = "/api/branch/branches/" + localAdminId;
+    return this.http.get<ListBranch[]>(url,{ headers })
     .pipe(
 
     );
@@ -413,14 +416,14 @@ export class RequestService {
 
   }
 
-  listCashiers() : Observable<ListCashier[]>{
+  listCashiers(userId : number) : Observable<ListCashier[]>{
     const token = this.authService.getToken();
     console.warn(token);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-    return this.http.get<ListCashier[]>("/api/user/cashier",{ headers })
+    const url = "/user/cashier/list/" + userId
+    return this.http.get<ListCashier[]>(url,{ headers })
     .pipe(
 
     );
@@ -466,14 +469,15 @@ export class RequestService {
 
   }
 
-  listCashierCheckouts() : Observable<ListCashierCheckout[]>{
+  listCashierCheckouts(branchManangerId : number) : Observable<ListCashierCheckout[]>{
     const token = this.authService.getToken();
     console.warn(token);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<ListCashierCheckout[]>("/api/cashier-checkout/cashier-checkouts",{ headers })
+    const url = "/api/cashier-checkout/cashier-checkouts/" + branchManangerId;
+    return this.http.get<ListCashierCheckout[]>(url,{ headers })
     .pipe(
 
     );
@@ -716,7 +720,33 @@ export class RequestService {
 
   }
 
+  getTechnicalStaffId(branchId : number) : Observable<TechnicalStaffInfo[]>{
+    const token = this.authService.getToken();
+    console.warn(token);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
+    const url = "/api/branch/technical-staff/" + branchId;
+    return this.http.get<TechnicalStaffInfo[]>(url,{ headers })
+    .pipe(
+
+    );
+
+  }
+
+
+  getBrancIdOfCashierCheckout(branchManagerId: number ): Observable<{ branchId: number }>{
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    
+    const url = "/api/branch/branch-manager/" + branchManagerId;
+    return this.http.get<{ branchId: number }>(url, { headers}).pipe(
+    )
+
+  }
 
 
 

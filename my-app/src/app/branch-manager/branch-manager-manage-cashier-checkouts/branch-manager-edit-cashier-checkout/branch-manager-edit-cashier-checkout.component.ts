@@ -29,6 +29,15 @@ export class BranchManagerEditCashierCheckoutComponent implements OnInit {
     cashierName : "",
     cashierSurname : ""
   };
+
+  cashierCheckout_copy :  CashierCheckouts = {
+    cashierCheckoutId: 0,
+    cameraId : "0",
+    cashierId : 0,
+    cashierName : "",
+    cashierSurname : ""
+  };
+  
   
   selectedCashierId : number = 0;
   cashiers: BehaviorSubject<Cashiers[]> = new BehaviorSubject<Cashiers[]>([]); 
@@ -50,6 +59,8 @@ export class BranchManagerEditCashierCheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.authService.getUserName();
     this.surname = this.authService.getUserSurname();
+    this.cashierCheckout = this.dataSharingService.getCashierCheckout();
+    this.cashierCheckout_copy = this.cashierCheckout;
     this.getCashiers();
 
   }
@@ -81,10 +92,18 @@ export class BranchManagerEditCashierCheckoutComponent implements OnInit {
    // console.log(this.cashiers); 
   }
 
+  checkInputValue(){
+    if (!this.cashierCheckout.cameraId || this.cashierCheckout.cameraId.trim() === '') {
+      this.cashierCheckout.cameraId = this.cashierCheckout_copy.cameraId;
+    }
+  }
 
   saveCashierCheckout() {
-    
+    this.checkInputValue();
     //console.log('Clicked Save:');
+    if(this.selectedCashierId==0){
+      this.selectedCashierId = this.cashierCheckout.cashierId;
+    }
     const editedCashierCheckout = {
       cameraId : this.cashierCheckout.cameraId,
       cashierId : this.selectedCashierId

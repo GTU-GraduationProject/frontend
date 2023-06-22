@@ -37,6 +37,15 @@ export class GeneralAdminEditBrandComponent implements OnInit {
     localAdminSurname : "",
   };
 
+  brand_copy : Brands = {
+    brandId : 0,
+    brandName : "",
+    brandLogo : "",
+    localAdminId : 0,
+    localAdminName : "",
+    localAdminSurname : "",
+  };
+
   message : string = "";
   errorMessage : string = "";
   photoMessage : string = "";
@@ -69,7 +78,7 @@ export class GeneralAdminEditBrandComponent implements OnInit {
     this.surname = this.authService.getUserSurname();
 
     this.brand = this.dataSharingService.getBrandData();
-
+    this.brand_copy = this.brand;
    
     this.getLocalAdmins();
     
@@ -100,7 +109,20 @@ export class GeneralAdminEditBrandComponent implements OnInit {
     // console.log(this.localAdmins); 
   }
   
+  checkInputValue(){
+    if (!this.brand.brandName || this.brand.brandName.trim() === '') {
+      this.brand.brandName = this.brand_copy.brandName;
+    }
+    if (!this.brand.brandLogo || this.brand.brandLogo.trim() === '') {
+      this.brand.brandLogo = this.brand_copy.brandLogo;
+    }
+  }
+
   saveBrand(){
+    this.checkInputValue();
+    if(this.selectedLocalAdminId == 0){
+      this.selectedLocalAdminId = this.brand.localAdminId;
+    }
     const editedBrand = {
       brandName : this.brand.brandName,
       brandLogo : this.brand.brandLogo,

@@ -29,6 +29,18 @@ export class BranchManagerEditCashierComponent implements OnInit {
     cashierCheckoutId : 0
   };
 
+  cashier_copy : Cashiers = {
+    id : 0,
+    name : "",
+    surname : "",
+    email: "",
+    brandName: "",
+    brandId : 0,
+    branchName: "",
+    branchId : 0,
+    cashierCheckoutId : 0
+  };
+
 
   
   message : string = "";
@@ -50,14 +62,27 @@ export class BranchManagerEditCashierComponent implements OnInit {
     this.surname = this.authService.getUserSurname();
 
     this.cashier = this.dataSharingService.getCashier();
+    this.cashier_copy = this.cashier;
 
   }
 
 
+  checkInputValue(){
+    if (!this.cashier.name || this.cashier.name.trim() === '') {
+      this.cashier.name = this.cashier_copy.name;
+    }
+    if (!this.cashier.surname || this.cashier.surname.trim() === '') {
+      this.cashier.surname = this.cashier_copy.surname;
+    }
+    if (!this.cashier.email || this.cashier.email.trim() === '') {
+      this.cashier.email = this.cashier_copy.email;
+    }
+  }
+
 
 
   saveCashier() {
-    
+    this.checkInputValue();
     //console.log('Clicked Save:');
     const editedLocalAdmin = {
       name : this.cashier.name,

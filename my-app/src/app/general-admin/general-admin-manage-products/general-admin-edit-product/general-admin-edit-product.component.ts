@@ -32,6 +32,16 @@ export class GeneralAdminEditProductComponent implements OnInit {
     productOwnerName :  "",
     productOwnerSurname:  ""
   };
+
+  product_copy : Products = {
+    productId :  0,
+    productName :  "",
+    productLogo :  "",
+    productOwnerId:  0,
+    productOwnerName :  "",
+    productOwnerSurname:  ""
+  };
+
   productOwners: BehaviorSubject<ProductOwners[]> = new BehaviorSubject<ProductOwners[]>([]); 
  
   message : string = "";
@@ -58,6 +68,7 @@ export class GeneralAdminEditProductComponent implements OnInit {
     this.name = this.authService.getUserName();
     this.surname = this.authService.getUserSurname();   
     this.product = this.dataSharingService.getProduct();
+    this.product_copy = this.product;
     this.getProductOwners();
  
   }
@@ -89,11 +100,21 @@ export class GeneralAdminEditProductComponent implements OnInit {
     console.log(this.productOwners); 
   }
 
+  checkInputValue(){
+    if (!this.product.productName || this.product.productName.trim() === '') {
+      this.product.productName = this.product_copy.productName;
+    }
+    if (!this.product.productLogo || this.product.productLogo.trim() === '') {
+      this.product.productLogo = this.product_copy.productLogo;
+    }
+  }
   
   saveProduct() {
-   
+   this.checkInputValue()
    // console.log('Clicked Save:');
-
+    if(this.selectedProductOwnerId==0){
+      this.selectedProductOwnerId = this.product.productOwnerId;
+    }
     const editedProduct = {
       productName : this.product.productName,
       productOwnerId : this.selectedProductOwnerId,

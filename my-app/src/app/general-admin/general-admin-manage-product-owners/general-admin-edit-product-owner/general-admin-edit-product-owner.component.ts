@@ -31,6 +31,16 @@ export class GeneralAdminEditProductOwnerComponent implements OnInit  {
     email: ""
   };
 
+  productOwner_copy : ProductOwners = {
+    id : 0,
+    name : "",
+    surname : "",
+    productName: "",
+    productId : 0,
+    productLogo : "",
+    email: ""
+  };
+
   productOwnerName: string = "";
   productOwnerSurname: string = "";
   productName: string = "";
@@ -56,12 +66,24 @@ export class GeneralAdminEditProductOwnerComponent implements OnInit  {
     this.surname = this.authService.getUserSurname();
 
     this.productOwner = this.dataSharingService.getProductOwner();
-    
+    this.productOwner_copy = this.productOwner;
     
   }
   
-  
+  checkInputValue(){
+    if (!this.productOwner.name || this.productOwner.name.trim() === '') {
+      this.productOwner.name = this.productOwner_copy.name;
+    }
+    if (!this.productOwner.surname || this.productOwner.surname.trim() === '') {
+      this.productOwner.surname = this.productOwner_copy.surname;
+    }
+    if (!this.productOwner.email || this.productOwner.email.trim() === '') {
+      this.productOwner.email = this.productOwner_copy.email;
+    }
+  }
+
   saveProductOwner() {
+    this.checkInputValue();
    // console.log('Clicked Save:');
 
     const editedProductOwner = {

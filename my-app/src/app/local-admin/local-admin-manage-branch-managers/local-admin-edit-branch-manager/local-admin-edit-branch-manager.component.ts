@@ -32,6 +32,16 @@ export class LocalAdminEditBranchManagerComponent implements OnInit {
     branchId :  0
   }
 
+  branchManager_copy : BranchManagers = {
+    id :  0,
+    name :  "",
+    surname :  "",
+    email:  "",
+    brandName:  "",
+    brandId :  0,
+    branchName:  "",
+    branchId :  0
+  }
 
   
   message : string = "";
@@ -50,9 +60,25 @@ export class LocalAdminEditBranchManagerComponent implements OnInit {
     this.surname = this.authService.getUserSurname();
   
     this.branchManager = this.dataSharingService.getBranchManager();
-  
+    this.branchManager_copy = this.branchManager;
   }
+  
+
+  checkInputValue(){
+    if (!this.branchManager.name || this.branchManager.name.trim() === '') {
+      this.branchManager.name = this.branchManager_copy.name;
+    }
+    if (!this.branchManager.surname || this.branchManager.surname.trim() === '') {
+      this.branchManager.surname = this.branchManager_copy.surname;
+    }
+    if (!this.branchManager.email || this.branchManager.email.trim() === '') {
+      this.branchManager.email = this.branchManager_copy.email;
+    }
+  }
+
+
   saveBranchManager() {
+    this.checkInputValue();
     //console.log('Clicked Save:');
     const editedTechnicalStaff = {
       name : this.branchManager.name,

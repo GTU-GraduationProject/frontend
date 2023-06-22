@@ -53,7 +53,7 @@ export class LocalAdminManageBranchesComponent implements OnInit{
    }
    getBranches(){
 
-    this.requestService.listBranches().subscribe((response: ListBranch[]) => {
+    this.requestService.listBranches(this.userId).subscribe((response: ListBranch[]) => {
       console.log(response);
       if (response) {
         response.forEach((item: ListBranch) => {

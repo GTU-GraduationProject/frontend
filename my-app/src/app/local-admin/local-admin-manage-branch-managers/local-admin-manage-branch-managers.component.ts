@@ -56,7 +56,7 @@ export class LocalAdminManageBranchManagersComponent implements OnInit{
 
   getBranchManagers(){
     this.branchManagers.next([]);
-    this.requestService.listBranchManagers().subscribe((response: ListBranchManagers[]) => {
+    this.requestService.listBranchManagers(this.userId).subscribe((response: ListBranchManagers[]) => {
       console.log(response);
       if (response) {
         response.forEach((item: ListBranchManagers) => {

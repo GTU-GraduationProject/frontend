@@ -11,6 +11,8 @@ import { Branches } from '../local-admin-manage-branches.component';
 import { EditBranch } from 'src/app/model/edit-branch';
 import { ListBranchManagers } from 'src/app/model/list-branch-managers';
 import { ListTechnicalStaffs } from 'src/app/model/list-technical-staffs';
+import { DataSharingService } from 'src/app/service/data-sharing-service.service';
+import { TechnicalStaffInfo } from 'src/app/model/technical-staff-info';
 
 
 const MESSAGE_TIMEOUT = 5000; 
@@ -27,6 +29,17 @@ export class LocalAdminEditBranchComponent implements OnInit {
   role : string | null = "";
 
   branch : Branches = {
+    brandId :  0,
+    brandName :  "",
+    brandLogo :  "",
+    branchId:  0,
+    branchName:  "",
+    branchManagerId :  0,
+    branchManagerName:  "",
+    branchManagerSurname :  ""
+  }
+
+  branch_copy : Branches = {
     brandId :  0,
     brandName :  "",
     brandLogo :  "",
@@ -60,14 +73,22 @@ export class LocalAdminEditBranchComponent implements OnInit {
   branchManagers: BehaviorSubject<BranchManagers[]> = new BehaviorSubject<BranchManagers[]>([]); 
   technicalStaffs : BehaviorSubject<TechnicalStaffs[]> = new BehaviorSubject<TechnicalStaffs[]>([]); 
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private requestService: RequestService) {}
+  technicalStaff : TechnicalStaffInfo = {
+    technicalStaffId: 0,
+    technicalStaffName: "",
+    technicalStaffSurname: ""
+  }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private requestService: RequestService,
+    private dataSharingService : DataSharingService) {}
 
   ngOnInit(): void {
     this.name = this.authService.getUserName();
     this.surname = this.authService.getUserSurname();
-
+    this.branch = this.dataSharingService.getBranch();
+    this.branch_copy = this.branch;
     this.getTechnicalStaffs();
     this.getBranchManagers();
+    this.getTechnicalStaffId();
   }
 
   getTechnicalStaffs(){
@@ -122,9 +143,42 @@ export class LocalAdminEditBranchComponent implements OnInit {
    // console.log(this.technicalStaffs); 
   }
 
+  getTechnicalStaffId(){
+    this.technicalStaffs.next([]);
+    this.requestService.getTechnicalStaffId(this.branch.branchId).subscribe((response: TechnicalStaffInfo[]) => {
+     // console.log(response);
+      if (response) {
+      //  console.log(response)
+        response.forEach((item: TechnicalStaffInfo) => {
+
+          //console.log(item.userId, item.name, item.surname,item.brandId,item.brandName)
+          const technicalStaff: TechnicalStaffInfo = {  
+            technicalStaffId : item.technicalStaffId,
+            technicalStaffName : item.technicalStaffName,
+            technicalStaffSurname : item.technicalStaffSurname
+          };
+          this.technicalStaff = technicalStaff;
+        })
+        
+      }
+    });
+   // console.log(this.technicalStaffs); 
+  }
+
+  checkInputValue(){
+    if (!this.branch.branchName || this.branch.branchName.trim() === '') {
+      this.branch.branchName = this.branch_copy.branchName;
+    }
+  }
+
+
+
   saveBranch(){
     if(this.selectedBranchManagerId == 0){
       this.selectedBranchManagerId = this.branch.branchManagerId;
+    }
+    if(this.selectedTechnicalStaffId == 0){
+      this.selectedTechnicalStaffId = this.technicalStaff.technicalStaffId;
     }
     //else technical
     const editedBranch = {

@@ -58,7 +58,7 @@ export class BranchManagerManageCashiersComponent implements OnInit{
 
   getCashiers(){
     this.cashiers.next([]);
-    this.requestService.listCashiers().subscribe((response: ListCashier[]) => {
+    this.requestService.listCashiers(this.userId).subscribe((response: ListCashier[]) => {
     //  console.log(response);
       if (response) {
         response.forEach((item: ListCashier) => {

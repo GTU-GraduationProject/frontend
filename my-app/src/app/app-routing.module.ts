@@ -36,6 +36,10 @@ import { ProductOwnerItemStatisticsComponent } from './product-owner/product-own
 import { ProductOwnerBranchStatisticsComponent } from './product-owner/product-owner-branch-statistics/product-owner-branch-statistics.component';
 import { ProductOwnerSeeItemDetailsComponent } from './product-owner/product-owner-see-item-details/product-owner-see-item-details.component';
 import { TechnicalStaffTrainingComponent } from './technical-staff/technical-staff-training/technical-staff-training.component';
+import { BranchManagerAddCashierComponent } from './branch-manager/branch-manager-manage-cashiers/branch-manager-add-cashier/branch-manager-add-cashier.component';
+import { BranchManagerEditCashierComponent } from './branch-manager/branch-manager-manage-cashiers/branch-manager-edit-cashier/branch-manager-edit-cashier.component';
+import { BranchManagerEditCashierCheckoutComponent } from './branch-manager/branch-manager-manage-cashier-checkouts/branch-manager-edit-cashier-checkout/branch-manager-edit-cashier-checkout.component';
+import { BranchManagerAddCashierCheckoutComponent } from './branch-manager/branch-manager-manage-cashier-checkouts/branch-manager-add-cashier-checkout/branch-manager-add-cashier-checkout.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -73,10 +77,10 @@ const routes: Routes = [
   { path: 'product-owner/branch-statistics', component: ProductOwnerBranchStatisticsComponent, canActivate: [AuthGuard], data: { roles: [UserRole.ProductOwner] } },
   { path: 'product-owner/details-of-item', component: ProductOwnerSeeItemDetailsComponent, canActivate: [AuthGuard], data: { roles: [UserRole.ProductOwner] } },
   { path: 'technical-staff/training', component: TechnicalStaffTrainingComponent, canActivate: [AuthGuard], data: { roles: [UserRole.TechnicalStaff] } },
-  { path: 'branch-manager/add-cashier', component: BranchManagerManageCashiersComponent, canActivate: [AuthGuard], data: { roles: [UserRole.BranchManager] } },
-  { path: 'branch-manager/add-cashier-checkout', component: BranchManagerManageCashierCheckoutsComponent, canActivate: [AuthGuard], data: { roles: [UserRole.BranchManager] } },
-  { path: 'branch-manager/edit-cashier', component: BranchManagerManageCashiersComponent, canActivate: [AuthGuard], data: { roles: [UserRole.BranchManager] } },
-  { path: 'branch-manager/edit-cashier-checkout', component: BranchManagerManageCashierCheckoutsComponent, canActivate: [AuthGuard], data: { roles: [UserRole.BranchManager] } },
+  { path: 'branch-manager/add-cashier', component: BranchManagerAddCashierComponent, canActivate: [AuthGuard], data: { roles: [UserRole.BranchManager] } },
+  { path: 'branch-manager/add-cashier-checkout', component: BranchManagerAddCashierCheckoutComponent, canActivate: [AuthGuard], data: { roles: [UserRole.BranchManager] } },
+  { path: 'branch-manager/edit-cashier', component: BranchManagerEditCashierComponent, canActivate: [AuthGuard], data: { roles: [UserRole.BranchManager] } },
+  { path: 'branch-manager/edit-cashier-checkout', component: BranchManagerEditCashierCheckoutComponent, canActivate: [AuthGuard], data: { roles: [UserRole.BranchManager] } },
   
  
 ];
